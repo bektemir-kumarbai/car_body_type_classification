@@ -7,11 +7,11 @@ from .services import media_form_depends_execute, MediaFormService
 from .utils import save_file, process_image
 from .schemas import CarAttributes
 
-media_router = APIRouter(prefix="/api/v1/vision", tags=["AutoVision"])
+media_router = APIRouter(prefix="/api/v1", tags=["CarTypeClassification"])
 
 
-@media_router.post("/detect/")
-async def detect_car_attrs(
+@media_router.post("/classify/")
+async def classify(
     service: Annotated[MediaFormService, Depends(media_form_depends_execute)],
     file: UploadFile = File(...),
 ):
@@ -21,9 +21,6 @@ async def detect_car_attrs(
     Args:
         service (MediaFormService): The service to handle media form operations.
         file (UploadFile): The image file to be processed.
-
-    Returns:
-        CarAttributes: The detected car attributes as a response.
 
     Raises:
         HTTPException: If the uploaded file is not an image or if any server error occurs.
