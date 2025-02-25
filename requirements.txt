@@ -1,0 +1,35 @@
+torch>=1.12
+basicsr==1.4.2
+pytorch_lightning==1.8.6
+ultralytics>=8.3.12
+cython
+fastapi
+setuptools
+SQLAlchemy
+python-decouple
+asyncpg
+realesrgan
+aiofiles
+uvicorn
+numpy
+opencv_python
+scikit_image
+asyncio
+gitpython
+pycocotools
+ujson
+pillow
+tqdm
+matplotlib
+scipy
+PyYAML>=5.4
+seaborn
+ipywidgets
+gevent
+termcolor
+scikit-learn
+albumentations
+torchvision>=0.13.1
+# git repos
+#upscaler @ git+https://github.com/ria-com/upscaler.git
+
