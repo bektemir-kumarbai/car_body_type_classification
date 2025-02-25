@@ -5,7 +5,6 @@ from fastapi.responses import JSONResponse
 
 from .services import media_form_depends_execute, MediaFormService
 from .utils import save_file, process_image
-from .schemas import CarAttributes
 
 media_router = APIRouter(prefix="/api/v1", tags=["CarTypeClassification"])
 

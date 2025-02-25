@@ -1,9 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import String, Integer, ForeignKey, Float
-from web.database.base_model import AbstractBase, Base
+from sqlalchemy import String, Float
+from web.database.base_model import AbstractBase
 from web.media_handler.schemas import MediaSchema
-
-from datetime import datetime
 
 
 class Media(AbstractBase):
