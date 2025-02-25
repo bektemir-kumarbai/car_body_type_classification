@@ -2,7 +2,7 @@ import time
 
 import torch
 import torchvision.transforms as transforms
-from transformers import ViTForImageClassification, ViTFeatureExtractor
+from transformers import ViTForImageClassification, ViTImageProcessor
 from PIL import Image
 import torch.nn.functional as F
 from decouple import config
@@ -13,7 +13,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 MODEL_PATH = config("MODEL_PATH")
 
 # 🔹 Загружаем feature extractor
-feature_extractor = ViTFeatureExtractor.from_pretrained("google/vit-base-patch16-224-in21k")
+feature_extractor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
 
 # 🔹 Преобразования (такие же, как при обучении)
 transform = transforms.Compose([
@@ -57,6 +57,6 @@ def predict(image_path):
         predicted_label = None
         confidence_score = None
     return {
-        "label": predicted_label,
-        "confidence_score": confidence_score
+        "car_type_body": predicted_label,
+        "car_type_body_score": confidence_score
     }

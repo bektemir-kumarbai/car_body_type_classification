@@ -33,6 +33,7 @@ async def classify(
     result = await process_image(filepath)
     try:
         if isinstance(result, dict):
+            await service.create(result, url)
             return JSONResponse({"data": result})
         else:
             return JSONResponse(result)

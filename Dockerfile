@@ -32,7 +32,7 @@ COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
 RUN apt update && apt install -y nano
 
-EXPOSE $APP_PORT
+EXPOSE 8787
 
 # Запуск приложения
 CMD ["python3", "manage.py"]
