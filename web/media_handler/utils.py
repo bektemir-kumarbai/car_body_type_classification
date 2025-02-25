@@ -6,7 +6,7 @@ import aiofiles
 import base64
 from io import BytesIO
 
-from web.ai_service.app_gts import lp_det_reco
+from web.ai_service.body_classification import predict
 from web.media_handler.schemas import CarAttributes
 
 RANDOM_STRING_CHARS = "1234567890QWERTYUIOPASDFGHJKLZXCVBNM"
@@ -82,10 +82,8 @@ async def process_image(img_path: str) -> dict:
         img_path: A string representing the path to the image file.
     return: A dictionary with data if a car is not detected, or a tuple containing the license plate information and car attributes.
     """
-    lp = lp_det_reco(img_path)
-    print(lp)
-    return lp
-
+    predictions = predict(img_path)
+    return predictions
 
 def get_value(result: str, index: int, subindex: Union[int, None] = None) -> Any:
     """

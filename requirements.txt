@@ -1,7 +1,7 @@
 torch>=1.12
-basicsr==1.4.2
 pytorch_lightning==1.8.6
 ultralytics>=8.3.12
+transformers
 cython
 fastapi
 setuptools
@@ -29,7 +29,6 @@ gevent
 termcolor
 scikit-learn
 albumentations
+python-multipart
 torchvision>=0.13.1
-# git repos
-#upscaler @ git+https://github.com/ria-com/upscaler.git
 

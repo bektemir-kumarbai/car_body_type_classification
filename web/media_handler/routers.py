@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, File, UploadFile
 from fastapi.responses import JSONResponse
 
 from .services import media_form_depends_execute, MediaFormService
-from .utils import save_file, process_image, format_data
+from .utils import save_file, process_image
 from .schemas import CarAttributes
 
 media_router = APIRouter(prefix="/api/v1/vision", tags=["AutoVision"])

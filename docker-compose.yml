@@ -6,8 +6,8 @@ services:
       - "${APP_PORT}:${APP_PORT}"
     volumes:
       - .:/project
-    environment:
-      - TZ=Asia/Bishkek
+    env_file:
+      - .env
     deploy:
       resources:
         reservations:

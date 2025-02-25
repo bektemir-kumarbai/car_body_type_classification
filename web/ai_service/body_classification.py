@@ -1,11 +1,11 @@
+import time
+
 import torch
 import torchvision.transforms as transforms
-from transformers import ViTForImageClassification, ViTImageProcessor
+from transformers import ViTForImageClassification, ViTFeatureExtractor
 from PIL import Image
 import torch.nn.functional as F
 from decouple import config
-import os
-import time
 
 # 🔹 Параметры
 BATCH_SIZE = 16
@@ -13,7 +13,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 MODEL_PATH = config("MODEL_PATH")
 
 # 🔹 Загружаем feature extractor
-feature_extractor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224-in21k")
+feature_extractor = ViTFeatureExtractor.from_pretrained("google/vit-base-patch16-224-in21k")
 
 # 🔹 Преобразования (такие же, как при обучении)
 transform = transforms.Compose([
@@ -40,23 +40,23 @@ print(f"🚗 Классы модели: {class_names}")
 # 🔥 Функция для предсказания одного изображения
 # 🔥 Функция для предсказания одного изображения
 def predict(image_path):
-    image = Image.open(image_path).convert("RGB")
-    image_tensor = transform(image).unsqueeze(0).to(DEVICE)
+    try:
+        image = Image.open(image_path).convert("RGB")
+        image_tensor = transform(image).unsqueeze(0).to(DEVICE)
+        start_time = time.time()
+        with torch.no_grad():
+            outputs = model(pixel_values=image_tensor).logits
+            probabilities = F.softmax(outputs, dim=1)  # Применяем softmax для вероятностей
+            confidence, predicted_class = probabilities.max(1)  # Находим наиболее вероятный класс
 
-    with torch.no_grad():
-        outputs = model(pixel_values=image_tensor).logits
-        probabilities = F.softmax(outputs, dim=1)  # Применяем softmax для вероятностей
-        confidence, predicted_class = probabilities.max(1)  # Находим наиболее вероятный класс
-
-    predicted_label = class_names[predicted_class.item()]
-    confidence_score = confidence.item() * 100  # Переводим в проценты
-
-    print(f"🔮 Предсказанный класс: {predicted_label} (уверенность: {confidence_score:.2f}%)")
-while True:
-    file_path = input('file path: ')
-    start_time = time.time()
-    if os.path.exists(file_path):
-        predict(file_path)
-    else:
-        print(f"⚠️ Файл {file_path} не найден! Добавьте изображение для теста.")
-    print(f"Время выполнения: {time.time() - start_time} секунд")
+        predicted_label = class_names[predicted_class.item()]
+        confidence_score = confidence.item() * 100  # Переводим в проценты
+        print("time elapsed:", time.time() - start_time)
+    except Exception as ex:
+        print(ex)
+        predicted_label = None
+        confidence_score = None
+    return {
+        "label": predicted_label,
+        "confidence_score": confidence_score
+    }
