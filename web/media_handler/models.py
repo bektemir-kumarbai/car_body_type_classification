@@ -5,13 +5,6 @@ from web.media_handler.schemas import MediaSchema
 
 
 class Media(AbstractBase):
-    """
-    The Media class you've provided is a SQLAlchemy ORM model for a database table named "media".
-    It is designed to store various attributes of media, specifically related to car information.\
-    This class extends AbstractBase, which implies it inherits common base properties for ORM models.
-    The __pydantic_model__ attribute indicates the use of Pydantic models for data validation and serialization.
-    Here's an overview of each attribute and the to_read_model method:
-    """
     __tablename__ = "media"
     __pydantic_model__ = MediaSchema
 

@@ -31,4 +31,5 @@ scikit-learn
 albumentations
 python-multipart
 torchvision>=0.13.1
+alembic
 

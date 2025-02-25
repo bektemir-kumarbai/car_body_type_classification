@@ -1,4 +1,4 @@
 .env
 web/media/*
 .idea
-models/*
+models/*models/vit_epoch_3.pth
