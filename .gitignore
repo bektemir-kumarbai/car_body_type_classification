@@ -1,4 +1,4 @@
 .env
 web/media/*
 .idea
-models/*
+./venv

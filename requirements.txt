@@ -1,7 +1,6 @@
 torch>=1.12
 pytorch_lightning==1.8.6
 ultralytics>=8.3.12
-transformers
 cython
 fastapi
 setuptools
@@ -17,6 +16,7 @@ scikit_image
 asyncio
 gitpython
 pycocotools
+python-multipart
 ujson
 pillow
 tqdm
@@ -26,10 +26,6 @@ PyYAML>=5.4
 seaborn
 ipywidgets
 gevent
-termcolor
-scikit-learn
-albumentations
-python-multipart
 torchvision>=0.13.1
 alembic
 
