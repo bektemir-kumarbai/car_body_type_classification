@@ -1,0 +1,10 @@
+ultralytics>=8.3.12
+grpcio-tools
+psycopg2-binary
+pydantic
+pydantic-settings
+pillow
+opencv-python-headless
+python-multipart
+python-jose
+passlib

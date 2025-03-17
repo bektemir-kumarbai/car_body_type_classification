@@ -1,0 +1,17 @@
+services:
+  car_body_cls:
+    build: .
+    container_name: car_body_cls
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    volumes:
+      - .:/project
+    env_file:
+      - .env
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package body_cls;
+
+service ImageProcessingService {
+  rpc ProcessImage (ImageRequest) returns (ImageResponse);
+}
+
+message ImageRequest {
+  string token = 1;
+  bytes image_data = 2;
+}
+
+message ImageResponse {
+  string car_type_body = 1;
+  float car_type_body_score = 2;
+}
